@@ -245,7 +245,7 @@
 
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-archive"></i>
+                                <i class="nav-icon fas fa-tags"></i>
                                 <p>
                                     Теги
                                     <i class="right fas fa-angle-left"></i>
@@ -253,13 +253,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('categories.index') }}" class="nav-link">
+                                    <a href="{{ route('tags.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Список тегов</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('categories.create') }}" class="nav-link">
+                                    <a href="{{ route('tags.create') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Новый тег</p>
                                     </a>

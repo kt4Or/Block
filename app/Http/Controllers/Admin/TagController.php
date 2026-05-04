@@ -13,7 +13,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::paginate(2);
+        $tags = Tag::paginate(5);
         return view('admin.tags.index', compact('tags'));
     }
 
@@ -22,7 +22,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.tags.create');
     }
 
     /**
@@ -30,7 +30,12 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+        ]);
+
+        Tag::create($request->all());
+        return redirect()->route('tags.index')->with('success', 'Тег добавлен');
     }
 
     /**
@@ -46,7 +51,8 @@ class TagController extends Controller
      */
     public function edit(string $id)
     {
-        dd(__METHOD__);
+        $category = Tag::find($id);
+        return view('admin.tags.edit', compact('tag'));
     }
 
     /**
@@ -54,7 +60,12 @@ class TagController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+        ]);
+        $tag = Tag::find($id);
+        $tag->update($request->all());
+        return redirect()->route('tags.index')->with('success', 'Измениня сохранены');
     }
 
     /**
@@ -62,6 +73,7 @@ class TagController extends Controller
      */
     public function destroy(string $id)
     {
-        dd(__METHOD__);
+        Tag::destroy($id);
+        return redirect()->route('tags.index')->with('success', 'Тег удален');
     }
 }
