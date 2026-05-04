@@ -10,11 +10,11 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-
     <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
+
+    
 
 
 
@@ -242,6 +242,30 @@
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-archive"></i>
+                                <p>
+                                    Теги
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('categories.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Список тегов</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('categories.create') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Новый тег</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -252,7 +276,11 @@
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        @yield('content')
+        <div class="content-wrapper">
+            @include('admin.layouts.errors')
+            @yield('content')
+        </div>
+
         <!-- /.content-wrapper -->
 
         <footer class="main-footer">
@@ -272,16 +300,16 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="{{ asset('assets/js/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
 
     <!-- Bootstrap 4 -->
-    <script src="{{ asset('assets/js/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- AdminLTE App -->
-    <script src="{{ asset('assets/js/dist/js/adminlte.min.js') }}"></script>
+    <script src="{{ asset('assets/dist/js/adminlte.min.js') }}"></script>
 
     <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('assets/js/dist/js/demo.js') }}"></script>
+    <script src="{{ asset('assets/dist/js/demo.js') }}"></script>
 
 </body>
 
