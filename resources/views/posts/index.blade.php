@@ -1,3 +1,7 @@
+
+остановился на 5 задании 14 практика 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,28 +23,28 @@
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     
     <!-- Design fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet"> 
+    <link href="https://googleapis.com" rel="stylesheet"> 
     
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
 
     <!-- FontAwesome Icons core CSS -->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="style.css" rel="stylesheet">
+    <link href="{{ asset('style.css') }}" rel="stylesheet">
 
     <!-- Animate styles for this template -->
-    <link href="css/animate.css" rel="stylesheet">
+    <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
 
     <!-- Responsive styles for this template -->
-    <link href="css/responsive.css" rel="stylesheet">
+    <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
 
     <!-- Colors for this template -->
-    <link href="css/colors.css" rel="stylesheet">
+    <link href="{{ asset('css/colors.css') }}" rel="stylesheet">
 
     <!-- Version Marketing CSS for this template -->
-    <link href="css/version/marketing.css" rel="stylesheet">
+    <link href="{{ asset('css/version/marketing.css') }}" rel="stylesheet">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -143,6 +147,7 @@
 
                                 <hr class="invis">
 
+                            @foreach ($posts as $post)
                                 <div class="blog-box wow fadeIn">
                                     <div class="post-media">
                                         <a href="marketing-single.html" title="">
@@ -162,14 +167,17 @@
                                                 <li><a href="#" class="gp-button btn btn-primary"><i class="fa fa-google-plus"></i></a></li>
                                             </ul>
                                         </div><!-- end post-sharing -->
-                                        <h4><a href="marketing-single.html" title="">The way to reach hundreds of thousands of customers is through the SEO</a></h4>
-                                        <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enimcerat elicerat eli nibh, maximus ac felis nec, maximus tempor odio.</p>
-                                        <small><a href="marketing-category.html" title="">Marketing</a></small>
-                                        <small><a href="marketing-single.html" title="">21 July, 2017</a></small>
-                                        <small><a href="#" title="">by Jack</a></small>
-                                        <small><a href="#" title=""><i class="fa fa-eye"></i> 666</a></small>
+                                        <h4><a href="{{route('posts.single', ['slug' => $post->slug])}}" 
+                                            title="">{{$post->title}}</a></h4>
+                                            {!! $post->description !!}
+                                        <small><a href="{{route ('categories.single', ['slug' => $post->category->slug])}}" 
+                                            title="">{{$post->category->title}}</a></small>
+                                        <small>{{$post->getPostDate()}}</small>
+                                        <small><i class="fa fa-eye"></i>{{$post->views}}</small>
                                     </div><!-- end meta -->
                                 </div><!-- end blog-box -->
+
+                            @endforeach 
 
                                 <hr class="invis">
 
@@ -509,11 +517,11 @@
 
     <!-- Core JavaScript
     ================================================== -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/tether.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/animate.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/tether.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/animate.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
 
 </body>
 </html>

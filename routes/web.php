@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MainController;
+use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\UserController;
@@ -26,7 +27,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('/', [MainController::class, 'index'])->name('admin.index');
     Route::resource('/categories', CategoryController::class);
     Route::resource('/tags', TagController::class);
-    Route::resource('/posts', PostController::class);
+    Route::resource('/posts', AdminPostController::class);
 });
 
 
@@ -47,5 +48,7 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 
 Route::get('/', [PostController::class, 'index'])->name('home');
-Route::get('/article', [PostController::class, 'show'])->name('posts.single');
+Route::get('/article/{slug}', [PostController::class, 'index'])->name('posts.single');
+Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('categories.single');
+
 

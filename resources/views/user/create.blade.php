@@ -68,7 +68,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-12 text-right"> {{-- Кнопка справа, как на макете логина --}}
+                        <div class="col-12 text-right"> 
                             <button type="submit" class="btn btn-primary px-4">Register</button>
                         </div>
                     </div>

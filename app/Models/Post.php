@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -29,7 +30,7 @@ class Post extends Model
     {
         return [
             'slug' =>[
-                'source'
+                'source' => 'title'
             ]
         ];
     }
@@ -52,6 +53,11 @@ class Post extends Model
             return $request->file('thumbnail')->store("images/{$folder}", 'public');
         }
         return null;
+    }
+
+    public function getPostDate()
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('d F, Y');
     }
 
     
