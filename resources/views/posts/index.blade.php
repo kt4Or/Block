@@ -148,7 +148,8 @@
                                 <div class="blog-box wow fadeIn">
                                     <div class="post-media">
                                         <a href="marketing-single.html" title="">
-                                            <img src="upload/market_blog_02.jpg" alt="" class="img-fluid">
+                                            <img src="{{ $post->thumbnail ? asset('uploads/' . $post->thumbnail) : asset('no-image.png') }}"
+                                            alt="{{ $post->title }}" class="img-fluid">
                                             <div class="hovereffect">
                                                 <span></span>
                                             </div>

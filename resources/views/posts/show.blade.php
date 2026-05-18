@@ -132,7 +132,8 @@
                             </div><!-- end title -->
 
                             <div class="single-post-media">
-                                <img src="{{ 'вывод картинки' }}" alt="" class="img-fluid">
+                                <img src="{{ $post->thumbnail ? asset('uploads/' . $post->thumbnail) : asset('no-image.png') }}"
+                                    alt="{{ $post->title }}" class="img-fluid">
                             </div><!-- end media -->
 
                             <div class="blog-content">
