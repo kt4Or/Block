@@ -14,8 +14,15 @@ class PostController extends Controller
         return view('posts.index', compact('posts'));
     }
 
-    public function show()
+    public function show($slug)
     {
-        return view('posts.show');
+        
+        $post = Post::with(['category', 'tags'])->where('slug', $slug)->firstOrFail();
+        
+        
+        $post->increment('views');
+        
+        
+        return view('posts.show', compact('post'));
     }
 }

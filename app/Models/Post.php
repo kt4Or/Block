@@ -12,9 +12,15 @@ use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
-    use Sluggable;
+    use HasFactory, Sluggable;
 
-    protected $fillable = ['title', 'description', 'content', 'category_id', 'thumbnail'];
+    
+    protected $fillable = ['title', 'description', 'content', 'category_id', 'thumbnail', 'views'];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 
     public function tags()
     {
@@ -26,27 +32,28 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function sluggable():array
+    public function sluggable(): array
     {
         return [
-            'slug' =>[
+            'slug' => [
                 'source' => 'title'
             ]
         ];
     }
 
-    public function getImage(){
-
+    public function getImage()
+    {
         if (!$this->thumbnail) {
-        return asset("no-image.png");
+            return asset("no-image.png");
+        }
+        
+        return Storage::url($this->thumbnail);
     }
-    return asset("uploads/{$this->thumbnail}");
 
-    }
-
-    public static function uploadImage(Request $request, $image = null){
-        if ($request->hasFile('thumbnail')){
-            if ($image){
+    public static function uploadImage(Request $request, $image = null)
+    {
+        if ($request->hasFile('thumbnail')) {
+            if ($image) {
                 Storage::disk('public')->delete($image);
             }
             $folder = date('Y-m-d');
@@ -57,9 +64,9 @@ class Post extends Model
 
     public function getPostDate()
     {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('d F, Y');
+        
+        return $this->created_at ? $this->created_at->format('d F, Y') : '';
     }
-
     
 
 }

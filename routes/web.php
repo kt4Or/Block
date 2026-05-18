@@ -48,7 +48,8 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 
 Route::get('/', [PostController::class, 'index'])->name('home');
-Route::get('/article/{slug}', [PostController::class, 'index'])->name('posts.single');
+Route::get('/article/{slug}', [PostController::class, 'show'])->name('posts.single');
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('categories.single');
+Route::get('/tag/{slug}', [TagController::class, 'show'])->name('tags.single');
 
 
